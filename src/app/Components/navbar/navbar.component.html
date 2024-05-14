@@ -9,7 +9,7 @@
     </button>
     <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 pt-1">
-        <li class="nav-item">
+        <li *ngIf="isLoggedIn()" class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/restaurantes">Restaurantes</a>
         </li>
         <li *ngIf="!isLoggedIn()">
@@ -37,7 +37,7 @@
             <a class="nav-link" routerLink="/social-fooders"><b>Social-Fooders |</b></a>
           </li>
           <li>
-            <a class="nav-link" (click)="logout()">Logout</a>
+            <a class="nav-link" routerLink="/" (click)="logout()">Logout</a>
           </li>
         </ul>
       </div>
