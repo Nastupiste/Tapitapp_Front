@@ -1,0 +1,16 @@
+<div class="row d-flex mt-5 mb-3">
+    <div class="d-flex col-12 justify-content-center mt-5">
+      <hgroup class="text-center align-items-center">
+        <img src="https://i.imgur.com/7RaDKIT.png" class="logoPersonalizado mb-4" alt="logo" />
+        <h1 class="mt-4">We're Social Fooders</h1>
+      </hgroup>
+    </div>
+  </div>
+  <div class="row d-flex p-3 border-radius-3 rounded">
+    <div class="col-12">
+      <div class="d-flex justify-content-center">
+        <button *ngIf="user?.is_admin" type="button" class="btn btn-primary mx-2" routerLink="/">Admin Site</button>
+        <button type="button" class="btn btn-primary mx-2" routerLink="/" >Restaurantes</button>
+      </div>
+    </div>
+  </div>

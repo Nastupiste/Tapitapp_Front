@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <!--prettier-ignore-->
+  <div class="container-fluid">
+    <a class="navbar-brand mx-3" routerLink="/">
+      <img src="https://i.imgur.com/22MvlY9.png" alt="Bootstrap" width="120" height="30" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 pt-1">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/restaurantes">Restaurantes</a>
+        </li>
+        <li *ngIf="!isLoggedIn()">
+          <a class="nav-link" routerLink="/registro">Regístrate</a>
+        </li>
+        <li *ngIf="!isLoggedIn()">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn() && user?.is_admin">
+          <a class="nav-link" routerLink="/admin">Admin Site</a>
+        </li>
+      </ul>
+      <div *ngIf="isLoggedIn()" class="align-items-center d-flex">
+        <ul class="navbar-nav mb-2 mb-lg-0 px-3">
+          <li>
+            <a class="nav-link" routerLink="/perfil"><b>{{ user?.username }}</b></a>
+          </li>
+          <li *ngIf="user?.is_owner">
+            <a class="nav-link" routerLink="/mis-restaurantes"><b>Mis Restaurantes |</b></a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/reservas"><b>Mis Reservas |</b></a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/social-fooders"><b>Social-Fooders |</b></a>
+          </li>
+          <li>
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
