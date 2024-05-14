@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../Models/user.model';
 import { UserService } from '../../Services/User/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +9,14 @@ import { UserService } from '../../Services/User/user.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  currentUser: User | null = null;
+ user: User | null = null;
 
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe({
       next: (user: User | null) => {
-        this.currentUser = user;
+        this.user = user;
       },
       error: (error: any) => {
         console.error('Error fetching user details:', error);
