@@ -1,1 +1,64 @@
-<p>restaurant-list works!</p>
+<div class="row d-flex">
+    <div class="col-12 text-center py-2">
+      <hgroup>
+        <h2 class="mx-3">¡Encuentra tu restaurante favorito!</h2>
+      </hgroup>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="text-center py-2 d-flex">
+        <form (ngSubmit)="onFilterChange()" class="">
+          <div class="pb-2 input-group">
+            <select class="inputPersonalizados" [(ngModel)]="selectedCiudad" name="opcionCiudad">
+              <option value="">Elige tu ciudad</option>
+              <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+            </select>
+            <select class="inputPersonalizados" [(ngModel)]="selectedCategoria" name="opcionCategoria">
+              <option value="">Categorias</option>
+              <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+            </select>
+            <select class="inputPersonalizados" [(ngModel)]="order" name="orden">
+              <option value="">Ordenar por</option>
+              <option value="mas_comentados">Más Comentados</option>
+              <option value="mejor_valorados">Mejor Valorados</option>
+            </select>
+            <input class="inputPersonalizados" type="text" [(ngModel)]="searchText" name="cadena" placeholder="Buscar restaurante">
+          </div>
+          <button class="btn btn-primary" type="submit">Filtrar productos</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row p-3 rounded">
+    <div *ngIf="restaurants.length > 0; else noRestaurants">
+      <div *ngFor="let restaurante of restaurants" class="col-3 alto d-flex justify-content-center rounded mt-4">
+        <div class="card m-3 d-flex h-100 rounded shadow-lg" style="width: 18rem">
+          <div class="centraImagen pt-3 d-flex">
+            <img *ngIf="restaurante.imagen" [src]="restaurante.imagen" class="card-img-top w-75" alt="Foto Restaurante" />
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="ms-5"><i class="bi bi-chat"></i> {{ restaurante.num_comentarios }} </span>
+            <span class="me-5">
+              <i *ngIf="restaurante.valoracion_media" class="bi bi-star"></i> {{ restaurante.valoracion_media | number:'1.0-1' }}
+              <span *ngIf="!restaurante.valoracion_media">Sin valoraciones</span>
+            </span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><b>{{ restaurante.nombre }}</b></h5>
+            <h6 class="card-subtitle mb-2">
+              {{ restaurante.categorias.join(', ') }}
+            </h6>
+            <p class="card-text altoTexto overflow-hidden">{{ restaurante.descripcion }}</p>
+          </div>
+          <div class="d-flex justify-content-center pb-2">
+            <a [routerLink]="['/detalle', restaurante.id]" class="text-white"><button type="button" class="btn btn-primary mx-2">Ver detalles</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noRestaurants>
+      <p>No hay restaurantes registrados</p>
+    </ng-template>
+  </div>
+  

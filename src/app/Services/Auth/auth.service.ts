@@ -61,7 +61,7 @@ export class AuthService {
       localStorage.removeItem('refreshToken');
     }
     this.clearCurrentUser();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 
   // Método para decodificar el token y almacenar los datos del usuario
