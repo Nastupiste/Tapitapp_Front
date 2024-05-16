@@ -18,6 +18,7 @@ interface LoginResponse {
 })
 export class AuthService {
   private authUrl = 'http://127.0.0.1:8000/api/v1/login';
+  urlFoto?: String = 'http://127.0.0.1:8000';
   currentUser: EventEmitter<User | null> = new EventEmitter<User | null>();
 
   constructor(
@@ -73,6 +74,7 @@ export class AuthService {
         username: tokenDecoded.username,
         is_owner: tokenDecoded.is_owner,
         is_admin: tokenDecoded.is_admin,
+        fotoPerfil:this.urlFoto+tokenDecoded.fotoPerfil
       };
       this.currentUser.emit(user);
       console.log(user);

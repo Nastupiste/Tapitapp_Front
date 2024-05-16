@@ -3,4 +3,5 @@ export interface TokenPayload {
     username: string;
     is_owner: boolean;
     is_admin: boolean;
+    fotoPerfil:string;
   }

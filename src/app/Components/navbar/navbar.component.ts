@@ -12,12 +12,13 @@ import { UserService } from '../../Services/User/user.service';
 export class NavbarComponent {
 
   user: User | null = null;
-
+  urlFoto?: String = 'http://127.0.0.1:8000';
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe({
       next: (user: User | null) => {
+        console.log(user);
         this.user = user;
       },
       error: (error: HttpErrorResponse) => {

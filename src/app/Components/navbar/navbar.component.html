@@ -23,6 +23,18 @@
         </li>
       </ul>
       <div *ngIf="isLoggedIn()" class="align-items-center d-flex">
+        <div *ngIf="isLoggedIn()">
+          </div>
+          <a class="me-1" [routerLink]="['/']">
+            <img
+              class="rounded-circle img-fluid"
+              [src]="user?.fotoPerfil? user?.fotoPerfil  : 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_10_Default_Profile_Picture.svg'"
+              alt="fotoPerfil"
+              width="40"
+              height="40"
+            />
+          </a>
+        <div>
         <ul class="navbar-nav mb-2 mb-lg-0 px-3">
           <li>
             <a class="nav-link" routerLink="/perfil"><b>{{ user?.username }}</b></a>
@@ -42,5 +54,6 @@
         </ul>
       </div>
     </div>
+  </div>
   </div>
 </nav>
